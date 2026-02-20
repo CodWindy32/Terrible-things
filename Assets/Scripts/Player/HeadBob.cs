@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class HeadBob : MonoBehaviour
 {
+    private const float MovementSpeedThreshold = 0.2f;
+
     [Header("Bob Settings")]
     [SerializeField] private float walkBobSpeed = 10f;
     [SerializeField] private float sprintBobSpeed = 14f;
@@ -9,6 +11,9 @@ public class HeadBob : MonoBehaviour
     [SerializeField] private float walkBobAmountX = 0.02f;
     [SerializeField] private float sprintBobAmountY = 0.05f;
     [SerializeField] private float sprintBobAmountX = 0.035f;
+
+    [Header("Intensity")]
+    [SerializeField, Range(0f, 2f)] private float bobIntensity = 1f;
 
     [Header("Smoothing")]
     [SerializeField] private float bobSmoothing = 12f;
@@ -20,17 +25,28 @@ public class HeadBob : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private FirstPersonController controller;
+    [SerializeField] private CrouchHandler crouchHandler;
 
     private float bobTimer;
     private Vector3 targetBobOffset;
     private Vector3 currentBobOffset;
-    private Vector3 restPosition;
+    private Vector3 baseRestPosition;
     private float landingOffset;
     private bool wasGrounded;
 
+    public Vector3 RestPosition => new Vector3(baseRestPosition.x, crouchHandler != null ? crouchHandler.CurrentRestY : baseRestPosition.y, baseRestPosition.z);
+
+    public float BobIntensity
+    {
+        get => bobIntensity;
+        set => bobIntensity = Mathf.Clamp(value, 0f, 2f);
+    }
+
     private void Start()
     {
-        restPosition = transform.localPosition;
+        if (crouchHandler == null)
+            crouchHandler = GetComponentInParent<CrouchHandler>();
+        baseRestPosition = transform.localPosition;
     }
 
     private void Update()
@@ -43,14 +59,14 @@ public class HeadBob : MonoBehaviour
     private void HandleHeadBob()
     {
         float speed = controller.HorizontalVelocity.magnitude;
-        bool isMoving = speed > 0.2f && controller.IsGrounded;
+        bool isMoving = speed > MovementSpeedThreshold && controller.IsGrounded;
 
         if (isMoving)
         {
             bool sprinting = controller.IsSprinting;
             float bobSpeed = sprinting ? sprintBobSpeed : walkBobSpeed;
-            float amountY = sprinting ? sprintBobAmountY : walkBobAmountY;
-            float amountX = sprinting ? sprintBobAmountX : walkBobAmountX;
+            float amountY = (sprinting ? sprintBobAmountY : walkBobAmountY) * bobIntensity;
+            float amountX = (sprinting ? sprintBobAmountX : walkBobAmountX) * bobIntensity;
 
             bobTimer += Time.deltaTime * bobSpeed;
 
@@ -82,6 +98,14 @@ public class HeadBob : MonoBehaviour
             : resetSmoothing;
 
         currentBobOffset = Vector3.Lerp(currentBobOffset, targetBobOffset, Time.deltaTime * smoothing);
-        transform.localPosition = restPosition + currentBobOffset + Vector3.up * landingOffset;
+        transform.localPosition = RestPosition + currentBobOffset + Vector3.up * landingOffset;
+    }
+
+    public void ResetBobState()
+    {
+        bobTimer = 0f;
+        targetBobOffset = Vector3.zero;
+        currentBobOffset = Vector3.zero;
+        landingOffset = 0f;
     }
 }

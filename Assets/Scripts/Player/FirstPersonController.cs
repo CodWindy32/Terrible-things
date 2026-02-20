@@ -2,12 +2,18 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CharacterController))]
+[RequireComponent(typeof(PlayerStateMachine))]
 public class FirstPersonController : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField] private float walkSpeed = 4f;
     [SerializeField] private float sprintSpeed = 7f;
+    [SerializeField] private float crouchSpeed = 2f;
     [SerializeField] private float acceleration = 10f;
+    [SerializeField] private float stepOffset = 0.55f;
+
+    [Header("Crouch")]
+    [SerializeField] private CrouchHandler crouchHandler;
 
     [Header("Jump & Gravity")]
     [SerializeField] private float jumpForce = 7f;
@@ -29,6 +35,9 @@ public class FirstPersonController : MonoBehaviour
     private InputAction jumpAction;
     private InputAction sprintAction;
 
+    [Header("State")]
+    [SerializeField] private PlayerStateMachine stateMachine;
+
     private Vector3 velocity;
     private float verticalRotation;
     private float currentSpeed;
@@ -37,10 +46,20 @@ public class FirstPersonController : MonoBehaviour
     public Vector3 HorizontalVelocity { get; private set; }
     public bool IsSprinting { get; private set; }
     public bool IsGrounded => isGrounded;
+    public float VerticalVelocity => velocity.y;
+    public CharacterController Controller => controller;
+    public InputAction MoveAction => moveAction;
+    public InputAction JumpAction => jumpAction;
+    public InputAction SprintAction => sprintAction;
 
     private void Awake()
     {
         controller = GetComponent<CharacterController>();
+        controller.stepOffset = stepOffset;
+        if (stateMachine == null)
+            stateMachine = GetComponent<PlayerStateMachine>();
+        if (crouchHandler == null)
+            crouchHandler = GetComponent<CrouchHandler>();
 
         var playerMap = inputActions.FindActionMap("Player", true);
         moveAction = playerMap.FindAction("Move", true);
@@ -73,12 +92,43 @@ public class FirstPersonController : MonoBehaviour
 
     private void Update()
     {
-        UpdateGroundCheck();
-        UpdateMouseLook();
-        UpdateMovement();
-        UpdateGravityAndJump();
+        switch (stateMachine.CurrentState)
+        {
+            case PlayerState.Climbing:
+                if (stateMachine.HasLook)
+                    UpdateMouseLook();
+                return;
 
+            case PlayerState.FallImpact:
+            case PlayerState.InUI:
+                ZeroHorizontalVelocity();
+                return;
+
+            case PlayerState.Normal:
+            case PlayerState.IdleBreathing:
+                break;
+        }
+
+        UpdateGroundCheck();
+
+        if (stateMachine.HasLook)
+            UpdateMouseLook();
+
+        if (stateMachine.HasMovement)
+            UpdateMovement();
+        else
+            ZeroHorizontalVelocity();
+
+        UpdateGravityAndJump();
         controller.Move(velocity * Time.deltaTime);
+    }
+
+    private void ZeroHorizontalVelocity()
+    {
+        velocity.x = 0f;
+        velocity.z = 0f;
+        HorizontalVelocity = Vector3.zero;
+        currentSpeed = 0f;
     }
 
     private void UpdateGroundCheck()
@@ -111,9 +161,10 @@ public class FirstPersonController : MonoBehaviour
     private void UpdateMovement()
     {
         Vector2 input = moveAction.ReadValue<Vector2>();
-        IsSprinting = sprintAction.IsPressed() && input.y > 0.1f;
+        bool crouching = crouchHandler != null && crouchHandler.IsCrouching;
+        IsSprinting = !crouching && sprintAction.IsPressed() && input.y > 0.1f;
 
-        float targetSpeed = IsSprinting ? sprintSpeed : walkSpeed;
+        float targetSpeed = crouching ? crouchSpeed : (IsSprinting ? sprintSpeed : walkSpeed);
         currentSpeed = Mathf.MoveTowards(currentSpeed, targetSpeed, acceleration * Time.deltaTime);
 
         Vector3 moveDir = transform.right * input.x + transform.forward * input.y;
@@ -135,9 +186,22 @@ public class FirstPersonController : MonoBehaviour
         if (isGrounded && velocity.y < 0f)
             velocity.y = -2f;
 
-        if (isGrounded && jumpAction.WasPerformedThisFrame())
+        bool canJump = stateMachine.HasMovement && isGrounded &&
+            (crouchHandler == null || !crouchHandler.IsCrouching);
+
+        if (canJump && jumpAction.WasPerformedThisFrame())
             velocity.y = jumpForce;
 
         velocity.y += gravity * Time.deltaTime;
+    }
+
+    public void ResetVelocity()
+    {
+        velocity = Vector3.zero;
+    }
+
+    public void SetVelocity(Vector3 vel)
+    {
+        velocity = vel;
     }
 }
