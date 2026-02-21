@@ -1,0 +1,340 @@
+/* ========================================
+   ELITE BLACK & WHITE MAIN MENU STYLES
+   ======================================== */
+
+/* Основной контейнер главного меню */
+.main-menu-container {
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+/* Главная панель */
+.main-panel {
+    align-items: center;
+    justify-content: center;
+    padding: 80px 60px;
+}
+
+/* Название игры */
+.game-title {
+    font-size: 96px;
+    -unity-font-style: bold;
+    color: rgb(255, 255, 255);
+    margin-bottom: 100px;
+    -unity-text-align: upper-center;
+    letter-spacing: 20px;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+}
+
+/* Контейнер кнопок главного меню */
+.main-buttons-container {
+    width: 600px;
+    align-items: center;
+}
+
+/* Кнопки главного меню */
+.main-menu-button {
+    width: 100%;
+    height: 70px;
+    margin-top: 18px;
+    margin-bottom: 18px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 0px;
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.4);
+    color: rgb(255, 255, 255);
+    font-size: 22px;
+    -unity-font-style: bold;
+    letter-spacing: 5px;
+    transition-duration: 0.3s;
+    transition-property: background-color, border-color, scale, translate, color;
+}
+
+.main-menu-button:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 1);
+    color: rgb(255, 255, 255);
+    scale: 1.04;
+    translate: 0 -4px;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+}
+
+.main-menu-button:active {
+    background-color: rgba(255, 255, 255, 0.25);
+    border-color: rgba(255, 255, 255, 0.8);
+    scale: 0.98;
+    translate: 0 0;
+}
+
+/* Основная кнопка (Начать игру) */
+.main-button-primary {
+    height: 80px;
+    font-size: 24px;
+    margin-bottom: 30px;
+    border-width: 2px;
+}
+
+/* Кнопка выхода */
+.main-button-exit {
+    margin-top: 20px;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.main-button-exit:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Панель настроек */
+.settings-panel {
+    width: 100%;
+    height: 100%;
+    padding: 80px 100px;
+    background-color: rgba(0, 0, 0, 0.95);
+    border-radius: 0px;
+    border-width: 0px;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Заголовок настроек */
+.settings-title {
+    font-size: 80px;
+    -unity-font-style: bold;
+    color: rgb(255, 255, 255);
+    margin-bottom: 60px;
+    -unity-text-align: upper-center;
+    letter-spacing: 16px;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
+}
+
+/* Скролл настроек */
+.settings-scroll {
+    width: 100%;
+    flex-grow: 1;
+    margin-bottom: 40px;
+}
+
+.settings-scroll .unity-scroller--vertical {
+    width: 12px;
+    background-color: rgba(20, 20, 20, 0.8);
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.settings-scroll .unity-scroller--vertical .unity-scroller__slider {
+    width: 12px;
+}
+
+.settings-scroll .unity-scroller--vertical .unity-base-slider__dragger {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-width: 1px;
+    border-color: rgba(255, 255, 255, 0.6);
+    border-radius: 0px;
+    transition-duration: 0.2s;
+}
+
+.settings-scroll .unity-scroller--vertical .unity-base-slider__dragger:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-color: rgba(255, 255, 255, 1);
+}
+
+/* Контейнер содержимого настроек */
+.settings-content-wrapper {
+    width: 100%;
+    max-width: 1200px;
+    align-self: center;
+}
+
+/* Секция настроек */
+.settings-section {
+    width: 100%;
+    margin-bottom: 50px;
+    padding: 40px;
+    background-color: rgba(10, 10, 10, 0.9);
+    border-width: 2px;
+    border-color: rgba(255, 255, 255, 0.25);
+    transition-duration: 0.3s;
+    transition-property: border-color, background-color;
+}
+
+.settings-section:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(15, 15, 15, 0.95);
+}
+
+/* Заголовок секции */
+.section-title {
+    font-size: 32px;
+    -unity-font-style: bold;
+    color: rgb(255, 255, 255);
+    margin-bottom: 30px;
+    -unity-text-align: upper-center;
+    letter-spacing: 6px;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+/* Поля настроек */
+.settings-field {
+    margin-top: 18px;
+    margin-bottom: 18px;
+    color: rgb(220, 220, 220);
+}
+
+.settings-field .unity-base-field__label {
+    min-width: 280px;
+    color: rgb(220, 220, 220);
+    font-size: 20px;
+    letter-spacing: 2px;
+    -unity-font-style: bold;
+}
+
+/* Dropdown */
+.settings-field .unity-base-popup-field__input {
+    background-color: rgba(20, 20, 20, 0.95);
+    border-width: 2px;
+    border-color: rgba(255, 255, 255, 0.4);
+    color: rgb(255, 255, 255);
+    padding: 12px 16px;
+    font-size: 18px;
+    border-radius: 0px;
+    transition-duration: 0.3s;
+    transition-property: border-color, background-color;
+}
+
+.settings-field .unity-base-popup-field__input:hover {
+    border-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(30, 30, 30, 1);
+}
+
+.settings-field .unity-base-popup-field__text {
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+}
+
+/* Toggle */
+.settings-field .unity-toggle__input {
+    background-color: rgba(20, 20, 20, 0.95);
+    border-width: 2px;
+    border-color: rgba(255, 255, 255, 0.4);
+    width: 60px;
+    height: 32px;
+    border-radius: 0px;
+    transition-duration: 0.3s;
+    transition-property: border-color, background-color;
+}
+
+.settings-field .unity-toggle__input:hover {
+    border-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(30, 30, 30, 1);
+}
+
+.settings-field .unity-toggle__input:checked {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-color: rgba(255, 255, 255, 0.9);
+}
+
+.settings-field .unity-toggle__checkmark {
+    background-color: rgb(255, 255, 255);
+    width: 24px;
+    height: 24px;
+    border-radius: 0px;
+    margin: 2px;
+    transition-duration: 0.2s;
+    transition-property: scale;
+}
+
+.settings-field .unity-toggle__checkmark:hover {
+    scale: 1.1;
+}
+
+/* Контейнер громкости */
+.volume-container {
+    flex-direction: row;
+    align-items: center;
+    margin-top: 18px;
+    margin-bottom: 18px;
+}
+
+/* Слайдер громкости */
+.volume-slider {
+    flex-grow: 1;
+    margin-right: 30px;
+}
+
+.volume-slider .unity-slider__dragger {
+    background-color: rgb(255, 255, 255);
+    border-radius: 0px;
+    width: 28px;
+    height: 28px;
+    border-width: 2px;
+    border-color: rgba(255, 255, 255, 0.9);
+    transition-duration: 0.2s;
+    transition-property: scale, background-color, border-color;
+}
+
+.volume-slider .unity-slider__dragger:hover {
+    background-color: rgb(240, 240, 240);
+    scale: 1.25;
+    border-color: rgb(255, 255, 255);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+}
+
+.volume-slider .unity-slider__dragger:active {
+    scale: 1.15;
+}
+
+.volume-slider .unity-slider__tracker {
+    background-color: rgba(40, 40, 40, 0.9);
+    height: 6px;
+    border-radius: 0px;
+    border-width: 2px;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.volume-slider .unity-slider__drag-container {
+    height: 6px;
+}
+
+/* Метка громкости */
+.volume-label {
+    font-size: 24px;
+    -unity-font-style: bold;
+    color: rgb(255, 255, 255);
+    min-width: 80px;
+    -unity-text-align: middle-right;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+}
+
+/* Кнопка назад в настройках */
+.settings-back-button {
+    margin-top: 30px;
+    width: 400px;
+    height: 70px;
+    font-size: 22px;
+    background-color: rgba(20, 20, 20, 0.95);
+    border-color: rgba(255, 255, 255, 0.3);
+    border-width: 2px;
+}
+
+.settings-back-button:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 1);
+    scale: 1.04;
+    translate: 0 -4px;
+}
+
+.settings-back-button:active {
+    background-color: rgba(255, 255, 255, 0.25);
+    scale: 0.98;
+    translate: 0 0;
+}
+
+/* Скрытое состояние */
+.hidden {
+    display: none;
+}

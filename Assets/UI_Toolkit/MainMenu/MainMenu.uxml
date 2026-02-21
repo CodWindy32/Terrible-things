@@ -1,0 +1,80 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" 
+         xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" 
+         editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" 
+         editor-extension-mode="False">
+    <Style src="project://database/Assets/UI_Toolkit/MainMenu/MainMenu.uss?fileID=7433441132597879392&amp;guid=PLACEHOLDER&amp;type=3#MainMenu" />
+    
+    <!-- Главное меню -->
+    <ui:VisualElement name="MainMenuContainer" class="main-menu-container">
+        
+        <!-- Главная панель меню -->
+        <ui:VisualElement name="MainPanel" class="main-panel">
+            <ui:Label text="TERRIBLE THINGS" display-tooltip-when-elided="true" name="GameTitle" class="game-title" />
+            
+            <ui:VisualElement name="MainButtonsContainer" class="main-buttons-container">
+                <ui:Button text="Начать игру" display-tooltip-when-elided="true" name="StartGameButton" class="main-menu-button main-button-primary" />
+                <ui:Button text="Настройки" display-tooltip-when-elided="true" name="SettingsButton" class="main-menu-button" />
+                <ui:Button text="Выйти" display-tooltip-when-elided="true" name="ExitButton" class="main-menu-button main-button-exit" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        
+        <!-- Панель настроек -->
+        <ui:VisualElement name="SettingsPanel" class="settings-panel hidden">
+            <ui:Label text="НАСТРОЙКИ" display-tooltip-when-elided="true" name="SettingsTitle" class="settings-title" />
+            
+            <ui:ScrollView name="SettingsScrollView" class="settings-scroll">
+                <ui:VisualElement name="SettingsContentWrapper" class="settings-content-wrapper">
+                    <!-- Графика -->
+                    <ui:VisualElement name="GraphicsSection" class="settings-section">
+                        <ui:Label text="ГРАФИКА" display-tooltip-when-elided="true" class="section-title" />
+                        
+                        <ui:DropdownField label="Качество" index="2" choices="Низкое,Среднее,Высокое,Ультра" name="QualityDropdown" class="settings-field" />
+                        <ui:DropdownField label="Разрешение" index="0" name="ResolutionDropdown" class="settings-field" />
+                        <ui:Toggle label="Полноэкранный режим" name="FullscreenToggle" class="settings-field" />
+                        <ui:Toggle label="VSync" name="VSyncToggle" class="settings-field" />
+                    </ui:VisualElement>
+                    
+                    <!-- Звук -->
+                    <ui:VisualElement name="AudioSection" class="settings-section">
+                        <ui:Label text="ЗВУК" display-tooltip-when-elided="true" class="section-title" />
+                        
+                        <ui:VisualElement name="MasterVolumeContainer" class="volume-container">
+                            <ui:Slider picking-mode="Ignore" label="Общая громкость" value="100" high-value="100" name="MasterVolumeSlider" class="settings-field volume-slider" />
+                            <ui:Label text="100%" display-tooltip-when-elided="true" name="MasterVolumeLabel" class="volume-label" />
+                        </ui:VisualElement>
+                        
+                        <ui:VisualElement name="MusicVolumeContainer" class="volume-container">
+                            <ui:Slider picking-mode="Ignore" label="Громкость музыки" value="80" high-value="100" name="MusicVolumeSlider" class="settings-field volume-slider" />
+                            <ui:Label text="80%" display-tooltip-when-elided="true" name="MusicVolumeLabel" class="volume-label" />
+                        </ui:VisualElement>
+                        
+                        <ui:VisualElement name="SfxVolumeContainer" class="volume-container">
+                            <ui:Slider picking-mode="Ignore" label="Громкость эффектов" value="100" high-value="100" name="SfxVolumeSlider" class="settings-field volume-slider" />
+                            <ui:Label text="100%" display-tooltip-when-elided="true" name="SfxVolumeLabel" class="volume-label" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    
+                    <!-- Управление -->
+                    <ui:VisualElement name="ControlsSection" class="settings-section">
+                        <ui:Label text="УПРАВЛЕНИЕ" display-tooltip-when-elided="true" class="section-title" />
+                        
+                        <ui:VisualElement name="MouseSensitivityContainer" class="volume-container">
+                            <ui:Slider picking-mode="Ignore" label="Чувствительность мыши" value="50" high-value="100" name="MouseSensitivitySlider" class="settings-field volume-slider" />
+                            <ui:Label text="50%" display-tooltip-when-elided="true" name="MouseSensitivityLabel" class="volume-label" />
+                        </ui:VisualElement>
+                        
+                        <ui:Toggle label="Инверсия Y-оси" name="InvertYToggle" class="settings-field" />
+                        
+                        <ui:VisualElement name="CameraShakeContainer" class="volume-container">
+                            <ui:Slider picking-mode="Ignore" label="Тряска камеры" value="1" high-value="2" name="CameraShakeSlider" class="settings-field volume-slider" />
+                            <ui:Label text="100%" display-tooltip-when-elided="true" name="CameraShakeLabel" class="volume-label" />
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:ScrollView>
+            
+            <ui:Button text="Назад" display-tooltip-when-elided="true" name="SettingsBackButton" class="main-menu-button settings-back-button" />
+        </ui:VisualElement>
+        
+    </ui:VisualElement>
+</ui:UXML>

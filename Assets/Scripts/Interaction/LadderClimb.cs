@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using TMPro;
 
 public class LadderClimb : MonoBehaviour
 {
@@ -13,13 +12,13 @@ public class LadderClimb : MonoBehaviour
     [SerializeField] private float jumpOffUpForce = 3f;
 
     [Header("Interaction")]
-    [SerializeField] private string promptMessage = "Нажмите [F] чтобы взобраться";
+    [SerializeField] private string promptMessage = "Взобраться по лестнице";
 
     [Header("References")]
     [SerializeField] private FirstPersonController controller;
     [SerializeField] private PlayerStateMachine stateMachine;
     [SerializeField] private InputActionAsset inputActions;
-    [SerializeField] private TMP_Text promptMessageUI;
+    [SerializeField] private InteractionPromptUI promptUI;
 
     private InputAction interactAction;
     private LadderZone nearbyLadder;
@@ -62,7 +61,7 @@ public class LadderClimb : MonoBehaviour
 
         if (nearbyLadder != null && stateMachine != null && stateMachine.CanOpenUI)
         {
-            ShowPrompt(promptMessage);
+            ShowPrompt();
 
             if (interactAction != null && interactAction.WasPerformedThisFrame())
                 StartClimbing(nearbyLadder);
@@ -184,18 +183,15 @@ public class LadderClimb : MonoBehaviour
             nearbyLadder = null;
     }
 
-    private void ShowPrompt(string text)
+    private void ShowPrompt()
     {
-        if (promptMessageUI != null)
-        {
-            promptMessageUI.text = text;
-            promptMessageUI.gameObject.SetActive(true);
-        }
+        if (promptUI != null)
+            promptUI.Show(promptMessage, "F");
     }
 
     private void HidePrompt()
     {
-        if (promptMessageUI != null)
-            promptMessageUI.gameObject.SetActive(false);
+        if (promptUI != null)
+            promptUI.Hide();
     }
 }

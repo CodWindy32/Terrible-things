@@ -1,0 +1,36 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" 
+         xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" 
+         editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../UIElementsSchema/UIElements.xsd" 
+         editor-extension-mode="False">
+    <Style src="project://database/Assets/UI_Toolkit/PauseMenu/PauseMenu.uss?fileID=7433441132597879392&amp;guid=PLACEHOLDER&amp;type=3#PauseMenu" />
+    
+    <!-- Меню паузы -->
+    <ui:VisualElement name="PauseContainer" class="pause-container hidden">
+        <!-- Размытый фон -->
+        <ui:VisualElement name="BlurredBackground" class="blurred-background" />
+        
+        <!-- Главное меню паузы -->
+        <ui:VisualElement name="MainPausePanel" class="pause-panel">
+            <ui:Label text="ПАУЗА" display-tooltip-when-elided="true" name="PauseTitle" class="pause-title" />
+            
+            <ui:VisualElement name="ButtonsContainer" class="buttons-container">
+                <ui:Button text="Продолжить игру" display-tooltip-when-elided="true" name="ResumeButton" class="horror-button" />
+                <ui:Button text="Настройки" display-tooltip-when-elided="true" name="SettingsButton" class="horror-button" />
+                <ui:Button text="Главное меню" display-tooltip-when-elided="true" name="MainMenuButton" class="horror-button" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        
+        <!-- Панель настроек -->
+        <ui:VisualElement name="SettingsPanel" class="pause-panel hidden">
+            <ui:Label text="НАСТРОЙКИ" display-tooltip-when-elided="true" name="SettingsTitle" class="pause-title" />
+            
+            <ui:VisualElement name="SettingsContent" class="settings-content">
+                <ui:Label text="Тряска камеры" display-tooltip-when-elided="true" class="settings-label" />
+                <ui:Slider picking-mode="Ignore" value="1" high-value="2" name="CameraShakeSlider" class="horror-slider" />
+                <ui:Label text="100%" display-tooltip-when-elided="true" name="ShakeValueLabel" class="shake-value-label" />
+            </ui:VisualElement>
+            
+            <ui:Button text="Назад" display-tooltip-when-elided="true" name="SettingsBackButton" class="horror-button horror-button-back" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
