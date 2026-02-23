@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UIElements;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -45,6 +46,11 @@ public class MainMenuController : MonoBehaviour
     private Label cameraShakeLabel;
 
     private List<Resolution> availableResolutions;
+
+    private Label gameTitleFlicker;
+    private float flickerTimer;
+    private float flickerInterval;
+    private float targetOpacity = 1f;
 
     private void Awake()
     {
@@ -111,7 +117,41 @@ public class MainMenuController : MonoBehaviour
         mouseSensitivityLabel = root.Q<Label>("MouseSensitivityLabel");
         cameraShakeLabel = root.Q<Label>("CameraShakeLabel");
 
+        gameTitleFlicker = root.Q<Label>("GameTitleFlicker");
+
         InitializeResolutions();
+
+        if (gameTitleFlicker != null)
+            StartCoroutine(FlickerTitleRoutine());
+    }
+
+    private IEnumerator FlickerTitleRoutine()
+    {
+        flickerTimer = 0f;
+        flickerInterval = 0.05f;
+
+        while (gameTitleFlicker != null && gameTitleFlicker.panel != null)
+        {
+            flickerTimer += Time.deltaTime;
+            if (flickerTimer >= flickerInterval)
+            {
+                flickerTimer = 0f;
+                // Имитация помех лампочки: случайные короткие мигания
+                float r = Random.value;
+                if (r < 0.15f)
+                    targetOpacity = Random.Range(0.05f, 0.25f);      // Почти погасла
+                else if (r < 0.35f)
+                    targetOpacity = Random.Range(0.4f, 0.7f);       // Приглушённая
+                else if (r < 0.5f)
+                    targetOpacity = Random.Range(0.85f, 1f);        // Лёгкое мерцание
+                else
+                    targetOpacity = 1f;                             // Полная яркость
+
+                gameTitleFlicker.style.opacity = targetOpacity;
+                flickerInterval = Random.Range(0.02f, 0.12f);       // Непредсказуемый ритм
+            }
+            yield return null;
+        }
     }
 
     private void InitializeResolutions()

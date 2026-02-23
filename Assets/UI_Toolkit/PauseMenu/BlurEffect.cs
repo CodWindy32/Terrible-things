@@ -32,7 +32,8 @@ public class BlurEffect : MonoBehaviour
             return;
         }
 
-        if (volume.profile != null && volume.profile.TryGet(out depthOfField))
+        var profile = volume.profile != null ? volume.profile : volume.sharedProfile;
+        if (profile != null && profile.TryGet(out depthOfField))
         {
             depthOfField.active = false;
         }

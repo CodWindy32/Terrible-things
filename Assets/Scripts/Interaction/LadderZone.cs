@@ -4,7 +4,6 @@ using UnityEngine;
 public class LadderZone : MonoBehaviour
 {
     [Header("Ladder Geometry")]
-    [Tooltip("Bottom of the climbable area. Its Forward (blue arrow) should point outward from the ladder surface.")]
     [SerializeField] private Transform ladderBottom;
 
     [Tooltip("Top of the climbable area.")]
@@ -22,10 +21,8 @@ public class LadderZone : MonoBehaviour
     public Transform DismountPoint => dismountPoint;
     public float PlayerStandDistance => playerStandDistance;
 
-    /// <summary>Direction outward from the ladder surface (the way the climber faces).</summary>
     public Vector3 OutwardDirection => ladderBottom.forward;
 
-    /// <summary>Returns the world position where the player should be at a given Y height.</summary>
     public Vector3 GetClimbPosition(float y)
     {
         Vector3 basePos = ladderBottom.position;

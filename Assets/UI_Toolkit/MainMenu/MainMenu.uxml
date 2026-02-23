@@ -9,7 +9,10 @@
         
         <!-- Главная панель меню -->
         <ui:VisualElement name="MainPanel" class="main-panel">
-            <ui:Label text="TERRIBLE THINGS" display-tooltip-when-elided="true" name="GameTitle" class="game-title" />
+            <ui:VisualElement name="GameTitleContainer" class="game-title-container">
+                <ui:Label text="TERRIBLE " display-tooltip-when-elided="true" name="GameTitleStatic" class="game-title" />
+                <ui:Label text="THINGS" display-tooltip-when-elided="true" name="GameTitleFlicker" class="game-title game-title-flicker" />
+            </ui:VisualElement>
             
             <ui:VisualElement name="MainButtonsContainer" class="main-buttons-container">
                 <ui:Button text="Начать игру" display-tooltip-when-elided="true" name="StartGameButton" class="main-menu-button main-button-primary" />
