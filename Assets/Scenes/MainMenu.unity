@@ -4558,7 +4558,7 @@ MonoBehaviour:
   smokeColor: {r: 0.7921569, g: 0.6392157, b: 0.4745098, a: 0.29803923}
   particleSize: {x: 0.8, y: 2.2}
   particleMaterial: {fileID: 0}
-  smokeTexture: {fileID: 2800000, guid: 771ca298a1b41f84498bffa601718fdb, type: 3}
+  smokeTexture: {fileID: 2800000, guid: 804aa7e964b004946968efb8bb45fe0c, type: 3}
   flowSpeed: 1.5
   flowDirection: {x: 0, y: 0, z: 1}
   turbulence: 0.4
