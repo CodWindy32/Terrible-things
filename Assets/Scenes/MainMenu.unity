@@ -2528,7 +2528,7 @@ GameObject:
   - component: {fileID: 98402033}
   - component: {fileID: 98402032}
   m_Layer: 0
-  m_Name: Quad
+  m_Name: AngreeDraw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2796,7 +2796,7 @@ GameObject:
   - component: {fileID: 563638633}
   - component: {fileID: 563638632}
   m_Layer: 0
-  m_Name: Point Light (1)
+  m_Name: Point Light_Right_Lamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2923,7 +2923,7 @@ GameObject:
   - component: {fileID: 643408481}
   - component: {fileID: 643408480}
   m_Layer: 0
-  m_Name: Quad (1)
+  m_Name: SunDraw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3236,7 +3236,7 @@ GameObject:
   - component: {fileID: 951853694}
   - component: {fileID: 951853693}
   m_Layer: 0
-  m_Name: Point Light
+  m_Name: Point Light_Left_Lamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3544,7 +3544,7 @@ GameObject:
   - component: {fileID: 1166624795}
   - component: {fileID: 1166624794}
   m_Layer: 0
-  m_Name: Cube (3)
+  m_Name: Picture
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4424,7 +4424,7 @@ GameObject:
   - component: {fileID: 1310570161}
   - component: {fileID: 1310570160}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4537,7 +4537,7 @@ GameObject:
   - component: {fileID: 1412499632}
   - component: {fileID: 1412499631}
   m_Layer: 0
-  m_Name: Plane (1)
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4614,7 +4614,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: b0ab5b8cd07c2834f9cee5e68c3fe9a3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4800,7 +4800,7 @@ GameObject:
   - component: {fileID: 1452870737}
   - component: {fileID: 1452870736}
   m_Layer: 0
-  m_Name: Point Light (1)
+  m_Name: Point Light_Right_Lamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8167,7 +8167,7 @@ GameObject:
   - component: {fileID: 1499422471}
   - component: {fileID: 1499422470}
   m_Layer: 0
-  m_Name: Point Light
+  m_Name: Point Light_Left_Lamp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8294,7 +8294,7 @@ GameObject:
   - component: {fileID: 1668237895}
   - component: {fileID: 1668237894}
   m_Layer: 0
-  m_Name: Quad
+  m_Name: Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8609,7 +8609,7 @@ GameObject:
   - component: {fileID: 3469287836702545687}
   - component: {fileID: 1711813855860876253}
   m_Layer: 0
-  m_Name: SM_WallLight
+  m_Name: SM_WallLight_Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8701,7 +8701,7 @@ GameObject:
   - component: {fileID: 8280858305801016142}
   - component: {fileID: 6129244648822810500}
   m_Layer: 0
-  m_Name: SM_WallLight (1)
+  m_Name: SM_WallLight_Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
